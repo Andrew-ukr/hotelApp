@@ -5,6 +5,7 @@ import 'express-async-errors';
 import { connectDB } from "./db/connectDB.js";
 import { notFoundMiddleware } from "./middleware/index.js";
 import { router as authRouter } from "./routs/authRouts.js";
+import { errorHandlerMiddleware } from "./middleware/errorHandlerMiddleware.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use('/api/v1/auth', authRouter)
 
 app.use(notFoundMiddleware)
+app.use(errorHandlerMiddleware)
 
 
 try {
