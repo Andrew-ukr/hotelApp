@@ -14,10 +14,9 @@ const port = process.env.PORT || 5000;
 
 // middleware
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser(process.env.JWT_SECRET));
 
 app.get("/api/v1/test", (req, res) => {
-  console.log(req.cookies)
   res.status(StatusCodes.OK).json({success: true, message: ReasonPhrases.OK});
 });
 

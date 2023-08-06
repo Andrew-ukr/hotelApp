@@ -9,5 +9,6 @@ export const attachCookie = ({
     secure: true,
     sameSite: "strict",
     expires: new Date(Date.now() + expires),
+    sign: true
   });
 };
