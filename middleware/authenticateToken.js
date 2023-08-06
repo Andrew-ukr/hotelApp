@@ -18,7 +18,7 @@ export const authenticateToken = (req, res, next) => {
         .status(StatusCodes.UNAUTHORIZED)
         .json({ message: `${ReasonPhrases.UNAUTHORIZED} - Token is invalid` });
     }
-    console.log({ decoded });
+    
     req.user = decoded;
     next();
   });

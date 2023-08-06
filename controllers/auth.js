@@ -14,7 +14,7 @@ export const register = async (req, res) => {
     res,
   });
 
-  return res.status(StatusCodes.OK).json({ success: true, user });
+  return res.status(StatusCodes.CREATED).json({ success: true, message:  ReasonPhrases.CREATED });
 };
 
 export const login = async (req, res) => {
