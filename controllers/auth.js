@@ -1,16 +1,12 @@
 import { User } from "../models/userModel.js";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import jwt from "jsonwebtoken";
-import { attachCookie } from "../utils/index.js";
+import { attachCookie, createToken } from "../utils/index.js";
+import { oneDay } from "../utils/constants.js";
 
 export const register = async (req, res) => {
   const { name, email, password, role } = req.body;
   const user = await User.create({ name, email, password, role });
-  const token = jwt.sign({ name, email }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
-  });
-
-  const oneDay = 1000 * 60 * 60 * 24;
+  const token = createToken({ user: { id: user._id, name, email, role } }); // maybe not all these fields are needed
 
   attachCookie({
     token,
@@ -18,7 +14,7 @@ export const register = async (req, res) => {
     res,
   });
 
-  return res.status(StatusCodes.OK).json({ success: true, user });
+  return res.status(StatusCodes.CREATED).json({ success: true, message:  ReasonPhrases.CREATED });
 };
 
 export const login = async (req, res) => {
@@ -28,7 +24,12 @@ export const login = async (req, res) => {
   const isPassword = user && (await user.comparePasswords(password));
 
   if (user && isPassword) {
-    return res.status(200).json("login user");
+    const token = createToken({ user: { name, email } });
+    attachCookie({ res, token, expires: oneDay });
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ success: true, message: ReasonPhrases.OK });
   } else {
     return res
       .status(StatusCodes.UNAUTHORIZED)
@@ -37,11 +38,10 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.cookie("jwtToken", "logout", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-    expires: new Date(Date.now()),
+  attachCookie({
+    token: "logout",
+    res,
   });
+
   return res.status(StatusCodes.UNAUTHORIZED).json(ReasonPhrases.UNAUTHORIZED);
 };
