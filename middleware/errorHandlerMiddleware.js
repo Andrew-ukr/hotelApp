@@ -7,5 +7,4 @@ export const errorHandlerMiddleware = (err, req, res, next) => {
     .status(StatusCodes.INTERNAL_SERVER_ERROR)
     .json({ success: false, message: ReasonPhrases.INTERNAL_SERVER_ERROR });
   }
-
 }
