@@ -1,5 +1,7 @@
+import { cookieTokenName } from "./constants.js";
+
 export const attachCookie = ({
-  cookieName = "jwtToken",
+  cookieName = cookieTokenName,
   token,
   expires = 0,
   res,

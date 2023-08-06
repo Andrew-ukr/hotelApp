@@ -6,7 +6,7 @@ import { oneDay } from "../utils/constants.js";
 export const register = async (req, res) => {
   const { name, email, password, role } = req.body;
   const user = await User.create({ name, email, password, role });
-  const token = createToken({ user: { name, email } });
+  const token = createToken({ user: { id: user._id, name, email, role } }); // maybe not all these fields are needed
 
   attachCookie({
     token,
@@ -22,7 +22,7 @@ export const login = async (req, res) => {
 
   const user = await User.findOne({ email, name });
   const isPassword = user && (await user.comparePasswords(password));
-  
+
   if (user && isPassword) {
     const token = createToken({ user: { name, email } });
     attachCookie({ res, token, expires: oneDay });
