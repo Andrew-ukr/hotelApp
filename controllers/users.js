@@ -27,9 +27,19 @@ const updateUser = (req, res) => {
   res.status(StatusCodes.OK).json({ success: true, message: ReasonPhrases.OK });
 };
 
-const deleteUser = (req, res) => {
-  console.log("deleteUser");
-  res.status(StatusCodes.OK).json({ success: true, message: ReasonPhrases.OK });
+const deleteUser = async (req, res) => {
+  const { userId } = req.body;
+
+  if (userId) {
+    const deleteUser = await User().deleteOne({ _id: userId });
+    return res
+      .status(StatusCodes.OK)
+      .json({ success: true, message: ReasonPhrases.OK, data: deleteUser });
+  } else {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ success: false, message: ReasonPhrases.BAD_REQUEST });
+  }
 };
 
 export { getAllUsers, getSingleUser, updateUser, deleteUser };
