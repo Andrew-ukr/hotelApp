@@ -2,19 +2,28 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { User } from "../models/userModel.js";
 
 const getAllUsers = async (req, res) => {
-  console.log("getAllUsers");
-  const allUsers = await User.find({}, '-password')
-  console.log(allUsers)
-  res.status(StatusCodes.OK).json({ success: true, message: ReasonPhrases.OK ,data: allUsers});
+  const allUsers = await User.find({}, "-password");
+  console.log(allUsers);
+  res
+    .status(StatusCodes.OK)
+    .json({ success: true, message: ReasonPhrases.OK, data: allUsers });
 };
 
-const getSingleUser = (req, res) => {
-  console.log("getSingleUser");
-  res.status(StatusCodes.OK).json({ success: true, message: ReasonPhrases.OK });
+const getSingleUser = async (req, res) => {
+  const { userId } = req.body;
+  if (userId) {
+    const singleUser = await User.findOne({ _id: userId }, "-password");
+    return res
+      .status(StatusCodes.OK)
+      .json({ success: true, message: ReasonPhrases.OK, data: singleUser });
+  } else {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ success: false, message: ReasonPhrases.BAD_REQUEST });
+  }
 };
 
 const updateUser = (req, res) => {
-  console.log("updateUser");
   res.status(StatusCodes.OK).json({ success: true, message: ReasonPhrases.OK });
 };
 
@@ -23,9 +32,4 @@ const deleteUser = (req, res) => {
   res.status(StatusCodes.OK).json({ success: true, message: ReasonPhrases.OK });
 };
 
-export {
-  getAllUsers,
-  getSingleUser,
-  updateUser,
-  deleteUser,
-};
+export { getAllUsers, getSingleUser, updateUser, deleteUser };
