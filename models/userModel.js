@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from "bcrypt";
+import { minPasswordLength } from '../utils/constants.js';
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -22,14 +23,14 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Password field is required'],
-    minlength: 6,
+    minlength: minPasswordLength,
   },
   role: {
     type: String,
     enum: ['admin', 'user'],
     default: 'user'
   },
-});
+},  { timestamps: true });
 
 userSchema.pre("save", async function() {
   const salt = await bcrypt.genSalt(10);
