@@ -1,7 +1,7 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { User } from "../models/userModel.js";
 import { minPasswordLength } from "../utils/constants.js";
-import { attachCookie } from "../utils/attachCookie.js";
+import { sendBadRequestResponse } from "../utils/sendBadRequestResponse.js";
 
 const getAllUsers = async (req, res) => {
   const allUsers = await User.find({}, "-password");
@@ -18,9 +18,7 @@ const getSingleUser = async (req, res) => {
       .status(StatusCodes.OK)
       .json({ success: true, message: ReasonPhrases.OK, data: singleUser });
   } else {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ success: false, message: ReasonPhrases.BAD_REQUEST });
+    return sendBadRequestResponse(res);
   }
 };
 
@@ -43,9 +41,7 @@ const updateUser = async (req, res) => {
   }
 
   if (!Object.keys(updatedFields).length || !userId) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ success: false, message: ReasonPhrases.BAD_REQUEST });
+    return sendBadRequestResponse(res);
   } else {
     const updates = await User.findByIdAndUpdate(
       { _id: userId },
@@ -68,9 +64,7 @@ const deleteUser = async (req, res) => {
       .status(StatusCodes.OK)
       .json({ success: true, message: ReasonPhrases.OK, data: deleteUser });
   } else {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ success: false, message: ReasonPhrases.BAD_REQUEST });
+    return sendBadRequestResponse(res);
   }
 };
 
