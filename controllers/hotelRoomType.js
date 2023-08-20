@@ -4,11 +4,16 @@ import { sendBadRequestResponse } from "../utils/sendBadRequestResponse.js";
 
 export const createHotelRoomType = async (req, res) => {
   const { typeName } = req.body;
+
   if (!typeName.trim()) {
     return sendBadRequestResponse(res);
   }
 
-  const newHotelRoomType = await HotelRoomType.create({ typeName });
+  const newHotelRoomType = await HotelRoomType.create({
+    typeName,
+    createdBy: req.user.userId,
+  });
+
   return res.status(StatusCodes.OK).json({
     success: true,
     message: ReasonPhrases.CREATED,
@@ -17,7 +22,9 @@ export const createHotelRoomType = async (req, res) => {
 };
 
 export const getAllHotelRoomTypes = async (req, res) => {
-  const allHotelRoomTypes = await HotelRoomType.find({});
+  const allHotelRoomTypes = await HotelRoomType.find({
+    createdBy: req.user.userId,
+  });
   return res.status(StatusCodes.OK).json({
     success: true,
     message: ReasonPhrases.OK,
@@ -35,6 +42,7 @@ export const updatedHotelRoomType = async (req, res) => {
   const updatedHotelRoomType = await HotelRoomType.findOneAndUpdate(
     {
       _id: hotelRoomTypeID,
+      createdBy: req.user.userId,
     },
     { typeName },
     { new: true }
@@ -55,13 +63,12 @@ export const deleteHotelRoomType = async (req, res) => {
 
   const deleteHotelRoomType = await HotelRoomType.findOneAndDelete({
     _id: hotelRoomTypeID,
+    createdBy: req.user.userId,
   });
 
-  return res
-    .status(StatusCodes.OK)
-    .json({
-      success: true,
-      message: ReasonPhrases.OK,
-      data: deleteHotelRoomType,
-    });
+  return res.status(StatusCodes.OK).json({
+    success: true,
+    message: ReasonPhrases.OK,
+    data: deleteHotelRoomType,
+  });
 };
