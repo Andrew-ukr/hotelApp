@@ -11,7 +11,7 @@ import {
 } from "./middleware/index.js";
 import { router as authRoutes } from "./routes/authRoutes.js";
 import { router as userRoutes } from "./routes/userRoutes.js";
-import { StatusCodes, ReasonPhrases } from "http-status-codes";
+import { router as hotelRoomTypes } from "./routes/hotelRoomTypes.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -28,6 +28,7 @@ app.use("/api/v1/auth", authRoutes);
 
 app.use(authenticateToken);
 app.use("/api/v1", userRoutes);
+app.use("/api/v1/hotel-room-types", hotelRoomTypes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

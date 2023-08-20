@@ -1,7 +1,6 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { User } from "../models/userModel.js";
 import { minPasswordLength } from "../utils/constants.js";
-import { attachCookie } from "../utils/attachCookie.js";
 
 const getAllUsers = async (req, res) => {
   const allUsers = await User.find({}, "-password");
