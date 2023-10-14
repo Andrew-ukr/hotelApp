@@ -1,7 +1,7 @@
-import React from "react";
 import clsx from "clsx";
-type InputPropsTypes = {
-  type?: "input" | "password" | "email";
+import React from "react";
+
+type TextareaPropsTypes = {
   label?: string;
   value?: string;
   placeholder?: string;
@@ -11,14 +11,14 @@ type InputPropsTypes = {
   onChange?: () => void;
 };
 
-const Input: React.FC<InputPropsTypes> = ({
-  type = "input",
+const Textarea: React.FC<TextareaPropsTypes> = ({
   label,
   value,
   onChange,
   placeholder,
   className,
   disabled = false,
+  isResize = false,
 }) => {
   const baseStyles =
     "rounded border text-sm text-app-grey-600 border-app-grey-200 outline-none focus:border-app-blue-200 hover:border-app-blue-200 hover:drop-shadow-md focus:drop-shadow-md py-2 px-4 w-80 bg-white";
@@ -30,13 +30,13 @@ const Input: React.FC<InputPropsTypes> = ({
           {label}
         </span>
       )}
-      <input
-        type={type}
+      <textarea
         className={clsx(
           baseStyles,
           disabled &&
-            "!bg-app-grey-200 !bg-opacity-20 !text-app-grey-100 !placeholder:text-app-grey-100 focus:!border-app-grey-200 hover:!border-app-grey-200 hover:drop-shadow-none focus:!drop-shadow-none h-10",
-          className || ""
+            "!bg-app-grey-200 !bg-opacity-20 !text-app-grey-100 !placeholder:text-app-grey-100 focus:!border-app-grey-200 hover:!border-app-grey-200 hover:drop-shadow-none focus:!drop-shadow-none h-10 ",
+          className || "",
+          !isResize && "resize-none"
         )}
         value={value}
         onChange={onChange}
@@ -47,4 +47,4 @@ const Input: React.FC<InputPropsTypes> = ({
   );
 };
 
-export default Input;
+export default Textarea;
