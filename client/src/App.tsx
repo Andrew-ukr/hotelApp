@@ -1,10 +1,10 @@
-import { Button } from './Components/UI';
-
+import { Button, Input } from './Components/UI';
 
 function App() {
   return (
     <div className="App">
-      <Button disabled>hello</Button>
+      <Button >hello</Button>
+      <Input value='hello'/>
     </div>
   );
 }
