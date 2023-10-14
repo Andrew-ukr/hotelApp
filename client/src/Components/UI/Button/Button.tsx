@@ -5,6 +5,7 @@ type ButtonPropsType = {
   bgColor?: string;
   textColor?: string;
   disabled?: boolean;
+  onClick?: () => void;
 };
 
 const Button: React.FC<ButtonPropsType> = ({
@@ -12,16 +13,19 @@ const Button: React.FC<ButtonPropsType> = ({
   bgColor,
   textColor,
   disabled = false,
+  onClick,
 }) => {
   return (
     <button
       className={clsx(
-        "flex justify-center items-center py-2 px-4 text-base text-[14px] leading-none rounded hover:brightness-125	 hover:drop-shadow-md",
+        "flex justify-center items-center py-2 px-4 text-sm  rounded hover:brightness-105	hover:drop-shadow-md h-10",
         (bgColor && !disabled) || "bg-app-blue-500",
         (textColor && !disabled) || "text-white",
-        disabled && "bg-app-grey-200 text-app-grey-50"
+        disabled &&
+          "!bg-app-grey-200 !bg-opacity-20 !text-app-grey-100  hover:!brightness-100	hover:!drop-shadow-none border border-app-grey-200"
       )}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>

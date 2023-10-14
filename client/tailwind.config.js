@@ -4,6 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        customPlaceholder: {
+          DEFAULT: '#5d6679',
+        },
         app: {
           grey: {
             '50': '#f0f1f3',

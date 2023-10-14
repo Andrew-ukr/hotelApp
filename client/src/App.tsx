@@ -1,10 +1,11 @@
-import { Button } from './Components/UI';
-
+import { toast } from 'react-toastify';
+import { Button, Input } from './Components/UI';
 
 function App() {
   return (
     <div className="App">
-      <Button disabled>hello</Button>
+      <Button onClick={() =>  toast('hello') }  >hello</Button>
+      <Input label='hello' value='hello'/>
     </div>
   );
 }
