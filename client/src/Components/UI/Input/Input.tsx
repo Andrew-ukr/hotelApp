@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+
 type InputPropsTypes = {
   type?: "input" | "password" | "email";
   label?: string;
