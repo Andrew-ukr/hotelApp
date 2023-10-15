@@ -1,5 +1,5 @@
 import React from "react";
-import { HouseLine, CalendarCheck, UserList, DoorOpen, PresentationChart, GearSix } from "@phosphor-icons/react";
+import { HouseLine, CalendarCheck, UserList, DoorOpen, PresentationChart, GearSix, MagnifyingGlass } from "@phosphor-icons/react";
 
 type IconPropsType = {
   name: string;
@@ -27,16 +27,14 @@ const Icon: React.FC<IconPropsType> = ({
   size,
   alt = "",
 }) => {
-  const iconList: IconList = { HouseLine, CalendarCheck, UserList, DoorOpen, PresentationChart, GearSix };
+  const iconList: IconList = { HouseLine, CalendarCheck, UserList, DoorOpen, PresentationChart, GearSix, MagnifyingGlass };
 
   const Component = iconList[name];
 
   if (!Component) return null;
 
   return (
-    <div>
       <Component color={color} weight={weight} size={size} alt={alt} />
-    </div>
   );
 };
 

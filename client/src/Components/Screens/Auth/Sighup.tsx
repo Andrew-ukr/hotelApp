@@ -11,22 +11,24 @@ const Sighup = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen">
-      <h2 className="text-app-blue-300 font-bold text-4xl mb-12">Welcome</h2>
-      <form onSubmit={handleSubmit}>
-        <Input label="Email" className="mb-3" />
-        <Input type="password" label="Password" className="mb-3" />
-        <Input type="password" label="Repeat password" />
-        <div className="flex justify-center pt-8">
-          <Button className="!w-28">SIGHUP</Button>
+      <div className="flex flex-col justify-center items-center w-96 rounded border pt-10">
+        <h2 className="text-app-blue-300 font-bold text-4xl mb-12">Welcome</h2>
+        <form onSubmit={handleSubmit}>
+          <Input label="Email" className="mb-3" />
+          <Input type="password" label="Password" className="mb-3" />
+          <Input type="password" label="Repeat password" />
+          <div className="flex justify-center pt-8">
+            <Button className="!w-28">SIGHUP</Button>
+          </div>
+        </form>
+        <div className="py-10">
+          Already have an account?{" "}
+          {
+            <Link to="/login" className="text-app-blue-600 hover:underline">
+              Log in.
+            </Link>
+          }
         </div>
-      </form>
-      <div className="py-10">
-        Already have an account?{" "}
-        {
-          <Link to="/login" className="text-app-blue-600 hover:underline">
-            Log in.
-          </Link>
-        }
       </div>
     </div>
   );

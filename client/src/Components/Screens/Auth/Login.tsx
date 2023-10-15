@@ -4,6 +4,8 @@ import { Button, Input } from "../../UI";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+
+  
   const handleSubmit: React.FormEventHandler = (e) => {
     e.preventDefault();
     toast("form submitted");
@@ -11,7 +13,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen ">
-      <div className="flex flex-col justify-center items-center w-96">
+      <div className="flex flex-col justify-center items-center w-96 rounded border pt-10">
         <h2 className="text-app-blue-300 font-bold text-4xl mb-12">Welcome</h2>
         <form onSubmit={handleSubmit}>
           <Input label="Email" className="mb-3" />
