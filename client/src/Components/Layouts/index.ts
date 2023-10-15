@@ -1,4 +1,3 @@
-import Login from "./Auth/Login";
-import Sighup from "./Auth/Sighup";
+import BasicLayout from "./BasicLayout/BasicLayout";
 
-export { Login, Sighup };
+export {  BasicLayout };

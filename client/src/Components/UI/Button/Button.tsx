@@ -3,7 +3,7 @@ import clsx from "clsx";
 type ButtonType = "button" | "submit" | "reset";
 
 type ButtonPropsType = {
-  children?: string;
+  children?: React.ReactNode;
   bgColor?: string;
   textColor?: string;
   className?: string;
