@@ -2,6 +2,7 @@ import { User } from "../models/userModel.js";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { attachCookie, createToken } from "../utils/index.js";
 import { oneDay } from "../utils/constants.js";
+import { use } from "bcrypt/promises.js";
 
 export const register = async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -16,7 +17,11 @@ export const register = async (req, res) => {
 
   return res
     .status(StatusCodes.CREATED)
-    .json({ success: true, message: ReasonPhrases.CREATED });
+    .json({
+      success: true,
+      message: ReasonPhrases.CREATED,
+      user: { id: user._id, name: use.name, email: user.email },
+    });
 };
 
 export const login = async (req, res) => {
@@ -29,9 +34,11 @@ export const login = async (req, res) => {
     const token = createToken({ user: { userId: user._id, name, email } });
     attachCookie({ res, token, expires: oneDay });
 
-    return res
-      .status(StatusCodes.OK)
-      .json({ success: true, message: ReasonPhrases.OK });
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: ReasonPhrases.OK,
+      user: { id: user._id, name: use.name, email: user.email },
+    });
   } else {
     return res
       .status(StatusCodes.UNAUTHORIZED)
@@ -45,5 +52,5 @@ export const logout = async (req, res) => {
     res,
   });
 
-  return res.status(StatusCodes.UNAUTHORIZED).json(ReasonPhrases.UNAUTHORIZED);
+  return res.status(StatusCodes.OK).json({ success: true, message: ReasonPhrases.UNAUTHORIZED});
 };
