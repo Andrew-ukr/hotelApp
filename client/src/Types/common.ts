@@ -1,0 +1,1 @@
+export type handleInputChangeType = (e: React.ChangeEvent<HTMLInputElement>) => void 

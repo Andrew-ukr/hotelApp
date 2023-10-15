@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import "express-async-errors";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import { connectDB } from "./db/connectDB.js";
 import {
@@ -17,6 +18,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
+app.use(cors())
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
