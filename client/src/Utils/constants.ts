@@ -15,3 +15,8 @@ export const FRONT_DESK = 'front-desc';
 export const GUESTS = 'guests';
 export const ROOMS = 'rooms';
 export const SETTINGS = 'settings';
+
+// toast messages
+export const TOAST_SOMETHING_WENT_WRONG  = "Oops! Something went wrong."
+
+

@@ -15,7 +15,7 @@ const HeaderPanel = () => {
       console.log(error);
     } finally {
       dispatch(setUser(null));
-      toast("User Logged out");
+      toast.success("User Logged out");
     }
   };
 

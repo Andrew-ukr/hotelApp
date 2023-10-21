@@ -41,8 +41,8 @@ export const login = async (req, res) => {
     });
   } else {
     return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .json({ success: false, message: ReasonPhrases.UNAUTHORIZED });
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ success: false, message: `Invalid user credentials. ${ReasonPhrases.BAD_REQUEST}` });
   }
 };
 
