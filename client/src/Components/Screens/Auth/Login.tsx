@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../Redux/Slices/authSlice";
-import validator from "validator";
+import isEmail from "validator/lib/isEmail";
 
 const Login = () => {
   const [login, { isLoading, isError }] = useLoginMutation();
@@ -39,7 +39,7 @@ const Login = () => {
 
   const handleSubmit: React.FormEventHandler = async (e) => {
     e.preventDefault();
-    const isEmailValid = validator.isEmail(email);
+    const isEmailValid = isEmail(email);
     const isNameValid = Boolean(name.trim());
     const isPasswordValid = password.length >= 6;
 
@@ -48,7 +48,7 @@ const Login = () => {
     setIsPasswordInvalid(!isPasswordValid);
 
     if (!isNameValid || !isEmailValid || !isPasswordValid) {
-      toast.error("Invalid user credentials")
+      toast.error("Invalid user credentials");
       return;
     }
 
@@ -69,7 +69,7 @@ const Login = () => {
         toast.error(response?.message || TOAST_SOMETHING_WENT_WRONG);
       }
     } catch (error: any) {
-      setPassword('')
+      setPassword("");
       toast.error(error?.data?.message || TOAST_SOMETHING_WENT_WRONG);
     }
   };
@@ -82,8 +82,12 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen ">
-      <div className="flex flex-col justify-center items-center w-96 rounded border pt-10">
-        <h2 className="text-app-blue-300 font-bold text-4xl mb-12">Welcome</h2>
+      <div className="flex flex-col justify-center items-center w-96 rounded border pt-10 px-2">
+        <h2 className="text-app-blue-300 font-bold text-4xl mb-2">Welcome</h2>
+        <h4 className="text-app-grey-300 text-sm mb-12 text-center">
+          Access the App panel using your name, email and password.
+        </h4>
+
         <form onSubmit={handleSubmit}>
           <Input
             label="User name"

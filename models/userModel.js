@@ -7,26 +7,26 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Name field is required"],
+      required: [true, "user name field is required"],
       trim: true,
     },
     email: {
       type: String,
-      required: [true, "Email field is required"],
+      required: [true, "email field is required"],
       unique: true,
       lowercase: true,
       trim: true,
       validate: {
         validator: (v) => validator.isEmail(v),
-        message: "Please enter a valid email address",
+        message: "please enter a valid email address",
       },
     },
     password: {
       type: String,
-      required: [true, "Password field is required"],
+      required: [true, "password field is required"],
       minlength: [
         minPasswordLength,
-        `Password should contain at least ${minPasswordLength} characters`,
+        `password should contain at least ${minPasswordLength} characters`,
       ],
     },
     role: {
