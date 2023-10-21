@@ -1,5 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { User } from "../../Types/user";
+import { apiSlice } from "../Api/apiSlice";
 
 type RegisterRes = {
   success: boolean;
@@ -13,10 +13,8 @@ type RegisterReq = {
   password: string;
 };
 
-export const authApi = createApi({
-  reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1/" }),
-  tagTypes: ["User"],
+export const authApi = apiSlice.injectEndpoints({
+  // tagTypes: ["User"],
   endpoints: (builder) => ({
     logout: builder.query<{ success: boolean; message: string }, void>({
       query: () => `auth/logout`,

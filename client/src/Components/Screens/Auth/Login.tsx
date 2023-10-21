@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { Button, Input } from "../../UI";
 import { Link } from "react-router-dom";
 import { handleInputChangeType } from "../../../Types/common";
-import { useLoginMutation } from "../../../Redux/Api/authApi";
+import { useLoginMutation } from "../../../Redux/Slices/authApi";
 import { DASHBOARD } from "../../../Utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
