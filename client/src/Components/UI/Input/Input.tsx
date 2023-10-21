@@ -10,7 +10,8 @@ type InputPropsTypes = {
   className?: string;
   disabled?: boolean;
   isResize?: boolean;
-  onChange?: handleInputChangeType ;
+  isInvalidValue?: boolean;
+  onChange?: handleInputChangeType;
 };
 
 const Input: React.FC<InputPropsTypes> = ({
@@ -21,6 +22,7 @@ const Input: React.FC<InputPropsTypes> = ({
   placeholder,
   className,
   disabled = false,
+  isInvalidValue = false,
 }) => {
   const baseStyles =
     "rounded border text-sm text-app-grey-600 border-app-grey-200 outline-none focus:border-app-blue-200 hover:border-app-blue-200 hover:drop-shadow-md focus:drop-shadow-md py-2 px-4 w-80 bg-white";
@@ -38,6 +40,7 @@ const Input: React.FC<InputPropsTypes> = ({
           baseStyles,
           disabled &&
             "!bg-app-grey-200 !bg-opacity-20 !text-app-grey-100 !placeholder:text-app-grey-100 focus:!border-app-grey-200 hover:!border-app-grey-200 hover:drop-shadow-none focus:!drop-shadow-none h-10",
+          isInvalidValue ? "!border-app-red-500" : "",
           className || ""
         )}
         value={value}
