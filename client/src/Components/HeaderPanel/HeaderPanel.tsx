@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Search } from "../UI";
-import { useLazyLogoutQuery } from "../../Redux/Api/authApi";
+import { useLazyLogoutQuery } from "../../Redux/Slices/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../Redux/Slices/authSlice";
 import { toast } from "react-toastify";

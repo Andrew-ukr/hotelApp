@@ -1,8 +1,13 @@
+// URL
+export const BASE_URL = 'http://localhost:5000/api/v1/'
+
+
+// input types
 export const INPUT: string = "input";
 export const TEXTAREA: string = "textarea";
 
-// routes
 
+// routes
 export const LOGIN = 'login';
 export const SIGHUP = 'sighup';
 export const DASHBOARD = 'dashboard';
