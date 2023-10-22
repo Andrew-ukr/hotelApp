@@ -1,6 +1,10 @@
 import { User } from "../models/userModel.js";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import { attachCookie, createToken } from "../utils/index.js";
+import {
+  attachCookie,
+  createToken,
+  sendBadRequestResponse,
+} from "../utils/index.js";
 import { oneDay } from "../utils/constants.js";
 import { use } from "bcrypt/promises.js";
 
@@ -64,3 +68,5 @@ export const logout = async (req, res) => {
     .status(StatusCodes.OK)
     .json({ success: true, message: ReasonPhrases.UNAUTHORIZED });
 };
+
+
