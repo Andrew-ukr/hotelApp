@@ -20,6 +20,7 @@ import {
 } from "./Utils/constants";
 import Settings from "./Components/Screens/Settings/Settings";
 import ProtectedRoutes from "./Components/ProtectedRoutes/ProtectedRoutes";
+import { Select } from "./Components/UI";
 
 function App() {
   return (
@@ -29,6 +30,24 @@ function App() {
           <Route path="/" element={<Navigate to={`/${DASHBOARD}`} />} />
           <Route path={`/${LOGIN}`} element={<Login />} />
           <Route path={`/${SIGHUP}`} element={<Sighup />} />
+          <Route
+            path={`/test`}
+            element={
+              <div className="h-screen">
+                <Select
+                  onChange={() => {}}
+                  options={[
+                    { id: 1, name: "Wade Cooper" },
+                    { id: 2, name: "Arlene Mccoy" },
+                    { id: 3, name: "Devon Webb" },
+                    { id: 4, name: "Tom Cook" },
+                    { id: 5, name: "Tanya Fox" },
+                  ]}
+                  value={{ id: 1, name: "Wade Cooper" }}
+                />
+              </div>
+            }
+          />
 
           <Route element={<ProtectedRoutes />}>
             <Route element={<BasicLayout />}>
