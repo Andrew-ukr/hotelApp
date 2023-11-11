@@ -3,13 +3,13 @@ import { toast } from "react-toastify";
 import { Button, Input } from "../../UI";
 import { Link, useNavigate } from "react-router-dom";
 import { handleInputChangeType } from "../../../Types/common";
-import { useRegisterMutation } from "../../../Redux/Slices/authApi";
+import { useRegisterMutation } from "../../../Redux/Slices/auth/authApi";
 import {
   DASHBOARD,
   TOAST_SOMETHING_WENT_WRONG,
 } from "../../../Utils/constants";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../../Redux/Slices/authSlice";
+import { setUser } from "../../../Redux/Slices/auth/authSlice";
 import isEmail from "validator/lib/isEmail";
 
 const Sighup = () => {
@@ -62,7 +62,9 @@ const Sighup = () => {
     <div className="flex flex-col justify-center items-center w-full h-screen">
       <div className="flex flex-col justify-center items-center w-96 rounded border pt-10 px-2">
         <h2 className="text-app-blue-300 font-bold text-4xl mb-2">Register</h2>
-        <h4 className="text-app-grey-300 text-sm mb-12 text-center">Create New Account</h4>
+        <h4 className="text-app-grey-300 text-sm mb-12 text-center">
+          Create New Account
+        </h4>
         <form onSubmit={handleSubmit}>
           <Input
             label="User name"
