@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { User } from "../../Types/user";
+import { RootState } from "../../store";
+import { User } from "../../../Types/user";
 
 type UserState = {
   user: null | User;

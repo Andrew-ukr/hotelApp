@@ -1,9 +1,9 @@
 import { Popover } from "@headlessui/react";
-import { NavLink } from "react-router-dom";
-import { USER_PROFILE } from "../../Utils/constants";
+import { NavLink, useNavigate } from "react-router-dom";
+import { LOGIN, USER_PROFILE } from "../../Utils/constants";
 import { Button, Icon } from "../UI";
-import { useLazyLogoutQuery } from "../../Redux/Slices/authApi";
-import { selectAuth, setUser } from "../../Redux/Slices/authSlice";
+import { useLazyLogoutQuery } from "../../Redux/Slices/auth/authApi";
+import { selectAuth, setUser } from "../../Redux/Slices/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -12,14 +12,15 @@ const UserDropdown = () => {
   const { user } = useSelector(selectAuth);
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      const res = await logout().unwrap();
+      const response = await logout().unwrap();
     } catch (error) {
       console.log(error);
     } finally {
       dispatch(setUser(null));
+      navigate(`/${LOGIN}`);
       toast.success("User Logged out");
     }
   };

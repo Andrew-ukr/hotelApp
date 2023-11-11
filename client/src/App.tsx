@@ -8,6 +8,7 @@ import {
   Login,
   NoRouteMatch,
   Rooms,
+  Settings
 } from "./Components/Screens";
 import {
   DASHBOARD,
@@ -18,8 +19,7 @@ import {
   SETTINGS,
   SIGHUP,
 } from "./Utils/constants";
-import Settings from "./Components/Screens/Settings/Settings";
-import ProtectedRoutes from "./Components/ProtectedRoutes/ProtectedRoutes";
+import { ProtectedRoutes } from "./Components";
 
 function App() {
   return (
