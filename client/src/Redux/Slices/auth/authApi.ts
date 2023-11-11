@@ -1,17 +1,5 @@
-import { User } from "../../Types/user";
-import { apiSlice } from "../Api/apiSlice";
-
-type RegisterRes = {
-  success: boolean;
-  message: string;
-  user: User;
-};
-
-type RegisterReq = {
-  name: string;
-  email: string;
-  password: string;
-};
+import { UserCredentials, UserResponse } from "./../../../Types/user";
+import { apiSlice } from "../../Api/apiSlice";
 
 export const authApi = apiSlice.injectEndpoints({
   // tagTypes: ["User"],
@@ -20,7 +8,7 @@ export const authApi = apiSlice.injectEndpoints({
       query: () => `auth/logout`,
     }),
 
-    login: builder.mutation<RegisterRes, Partial<RegisterReq>>({
+    login: builder.mutation<UserResponse, Partial<UserCredentials>>({
       query: (body) => ({
         url: `auth/login`,
         method: "POST",
@@ -29,7 +17,7 @@ export const authApi = apiSlice.injectEndpoints({
       invalidatesTags: ["User"],
     }),
 
-    register: builder.mutation<RegisterRes, Partial<RegisterReq>>({
+    register: builder.mutation<UserResponse, Partial<UserCredentials>>({
       query: (body) => ({
         url: `auth/register`,
         method: "POST",
