@@ -11,7 +11,14 @@ export const errorHandlerMiddleware = (err, req, res, next) => {
         .join(", ")}`,
     });
   }
-  
+
+  if (err.kind === "ObjectId" && err.path === "_id") {
+    res.status(StatusCodes.BAD_REQUEST).json({
+      success: false,
+      message: ReasonPhrases.BAD_REQUEST,
+    });
+  }
+
   if (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
