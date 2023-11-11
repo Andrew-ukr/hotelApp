@@ -13,12 +13,13 @@ import {
 import { router as authRoutes } from "./routes/authRoutes.js";
 import { router as userRoutes } from "./routes/userRoutes.js";
 import { router as hotelRoomTypes } from "./routes/hotelRoomTypes.js";
+import { router as guestsRoutes } from "./routes/guestsRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
@@ -30,6 +31,7 @@ app.use("/api/v1/auth", authRoutes);
 
 app.use(authenticateToken);
 app.use("/api/v1", userRoutes);
+app.use("/api/v1", guestsRoutes);
 app.use("/api/v1/hotel-room-types", hotelRoomTypes);
 
 app.use(notFoundMiddleware);
