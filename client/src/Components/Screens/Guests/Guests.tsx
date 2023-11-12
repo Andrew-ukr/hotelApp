@@ -1,9 +1,25 @@
-import React from 'react'
+import React from "react";
+import { Button } from "../../UI";
+import { useGetAllGuestsQuery } from "../../../Redux/Slices/guests/guestsApi";
+
+import GuestsTable from "../../Table/GuestsTable/GuestsTable";
 
 const Guests = () => {
-  return (
-    <div>Guests</div>
-  )
-}
+  const { data: guests, isLoading, isError } = useGetAllGuestsQuery();
 
-export default Guests
+  return (
+    <div className="flex flex-col grow overflow-auto">
+      <div className="font-medium text-xs text-app-grey-400 mb-4">Guests</div>
+      <div className="flex justify-end py-4">
+        <Button>+ Add Guest</Button>
+      </div>
+      <GuestsTable
+        data={guests?.data || []}
+        isError={isError}
+        isLoading={isLoading}
+      />
+    </div>
+  );
+};
+
+export default Guests;
