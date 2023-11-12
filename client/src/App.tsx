@@ -8,7 +8,7 @@ import {
   Login,
   NoRouteMatch,
   Rooms,
-  Settings
+  Settings,
 } from "./Components/Screens";
 import {
   DASHBOARD,
@@ -29,14 +29,12 @@ function App() {
           <Route path="/" element={<Navigate to={`/${DASHBOARD}`} />} />
           <Route path={`/${LOGIN}`} element={<Login />} />
           <Route path={`/${SIGHUP}`} element={<Sighup />} />
+          {/* route for testing */}
           <Route
             path={`/test`}
-            element={
-              <div className="h-screen">
-                {/* <UserDropdown /> */}
-              </div>
-            }
+            element={<div className="h-screen">{/* <UserDropdown /> */}</div>}
           />
+          {/* route for testing */}
 
           <Route element={<ProtectedRoutes />}>
             <Route element={<BasicLayout />}>
