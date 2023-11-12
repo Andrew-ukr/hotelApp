@@ -3,14 +3,14 @@ import { toast } from "react-toastify";
 import { Button, Input } from "../../UI";
 import { Link } from "react-router-dom";
 import { handleInputChangeType } from "../../../Types/common";
-import { useLoginMutation } from "../../../Redux/Slices/authApi";
+import { useLoginMutation } from "../../../Redux/Slices/auth/authApi";
 import {
   DASHBOARD,
   TOAST_SOMETHING_WENT_WRONG,
 } from "../../../Utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../../Redux/Slices/authSlice";
+import { setUser } from "../../../Redux/Slices/auth/authSlice";
 import isEmail from "validator/lib/isEmail";
 
 const Login = () => {

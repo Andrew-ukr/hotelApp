@@ -68,4 +68,24 @@ const deleteUser = async (req, res) => {
   }
 };
 
-export { getAllUsers, getSingleUser, updateUser, deleteUser };
+const currentUser = async (req, res) => {
+  const { userId } = req.user;
+
+  const user = await User.findById({ _id: userId });
+
+  if (user) {
+    return res
+      .status(StatusCodes.OK)
+      .json({
+        success: true,
+        message: ReasonPhrases.OK,
+        user: { id: user._id, name: user.name, email: user.email },
+      });
+  } else {
+    res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ success: true, message: ReasonPhrases.UNAUTHORIZED });
+  }
+};
+
+export { getAllUsers, getSingleUser, updateUser, deleteUser, currentUser };

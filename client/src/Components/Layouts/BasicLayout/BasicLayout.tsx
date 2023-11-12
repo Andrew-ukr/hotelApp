@@ -7,7 +7,7 @@ const BasicLayout = () => {
   return (
     <div className="flex justify-start w-full h-screen">
       <LeftSideBar />
-      <div className="flex flex-col grow pr-5">
+      <div className="flex flex-col grow pr-5 overflow-auto">
         <HeaderPanel />
         {<Outlet />}</div>
     </div>
