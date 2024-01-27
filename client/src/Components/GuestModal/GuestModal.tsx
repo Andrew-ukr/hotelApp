@@ -9,6 +9,7 @@ import { useModalVisibility } from "../../hooks/useModalVisibility";
 import { useCreateGuestMutation } from "../../Redux/Slices/guests/guestsApi";
 import SyncLoader from "react-spinners/SyncLoader";
 import { toast } from "react-toastify";
+import validator from "validator";
 
 type InputListsTypes = {
   label: string;
@@ -31,6 +32,10 @@ const GuestModal = () => {
   const [passportNumber, setPassportNumber] = useState("");
   const [email, setEmail] = useState("");
   const [notice, setNotice] = useState("");
+
+  const isConfirmButtonDisabled = !(
+    !!String(firstName) && validator.isMobilePhone(phone)
+  );
 
   const handleNameChange: handleInputChangeType = (e) => {
     setFirstName(e.target.value);
@@ -165,7 +170,7 @@ const GuestModal = () => {
       >
         Cancel
       </Button>
-      <Button onClick={createNewGuest}>Save</Button>
+      <Button onClick={createNewGuest}  disabled={isConfirmButtonDisabled}>Save</Button>
     </div>
   );
   
