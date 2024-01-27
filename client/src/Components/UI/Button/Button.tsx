@@ -7,6 +7,7 @@ type ButtonPropsType = {
   bgColor?: string;
   textColor?: string;
   className?: string;
+  dataCy?: string;
   type?: ButtonType;
   disabled?: boolean;
   onClick?: () => void;
@@ -20,6 +21,7 @@ const Button: React.FC<ButtonPropsType> = ({
   onClick,
   className,
   type,
+  dataCy = '',
 }) => {
   return (
     <button
@@ -34,6 +36,7 @@ const Button: React.FC<ButtonPropsType> = ({
       )}
       disabled={disabled}
       onClick={onClick}
+      data-cy={dataCy}
     >
       {children}
     </button>
