@@ -98,6 +98,8 @@ const GuestModal = () => {
         resetState();
         handleCloseModal();
         toast.success("New guest has been created");
+      } else {
+        toast.error(response.message || TOAST_SOMETHING_WENT_WRONG);
       }
     } catch (error: any) {
       toast.error(TOAST_SOMETHING_WENT_WRONG);
