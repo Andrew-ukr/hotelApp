@@ -11,6 +11,7 @@ type InputPropsTypes = {
   disabled?: boolean;
   isResize?: boolean;
   isInvalidValue?: boolean;
+  dataCy?: string,
   onChange?: handleInputChangeType;
 };
 
@@ -23,12 +24,15 @@ const Input: React.FC<InputPropsTypes> = ({
   className,
   disabled = false,
   isInvalidValue = false,
+  dataCy = '',
 }) => {
   const baseStyles =
     "rounded border text-sm text-app-grey-600 border-app-grey-200 outline-none focus:border-app-blue-200 hover:border-app-blue-200 hover:drop-shadow-md focus:drop-shadow-md py-2 px-4 w-80 bg-white";
 
+  const labelDataCy = dataCy ? `${dataCy}-label` : "";
+
   return (
-    <label className="flex flex-col">
+    <label className="flex flex-col" data-cy={labelDataCy}>
       {label && (
         <span className={clsx("text-app-grey-800 text-sm mb-2 font-medium")}>
           {label}
@@ -47,6 +51,7 @@ const Input: React.FC<InputPropsTypes> = ({
         onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
+        data-cy={dataCy}
       />
     </label>
   );
