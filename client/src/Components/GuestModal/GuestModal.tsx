@@ -178,11 +178,11 @@ const GuestModal = () => {
       actions={actions}
     >
       {isLoading && (
-        <div className="flex justify-center items-center grow w-full">
+          <div className="absolute flex justify-center items-center grow w-full h-full bg-app-blue-50 bg-opacity-50 top-0 left-0 right-0 z-10">
           <SyncLoader color="#1570ef" />
         </div>
       )}
-      {!isLoading && (
+      {(
         <div className="flex justify-between">
           <div className="">
             {leftInputsList.map(
@@ -201,7 +201,7 @@ const GuestModal = () => {
               }
             )}
           </div>
-          <div className="">
+          <div>
             {rightInputsList.map(
               ({ label, onChange, value, placeholder, type }, index) => {
                 return (
