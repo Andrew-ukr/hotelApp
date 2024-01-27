@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Button, Input } from "../../UI";
 import { Link, useNavigate } from "react-router-dom";
-import { handleInputChangeType } from "../../../Types/common";
+import { useDispatch } from "react-redux";
+import SyncLoader from "react-spinners/SyncLoader";
+
 import { useRegisterMutation } from "../../../Redux/Slices/auth/authApi";
+import { setUser } from "../../../Redux/Slices/auth/authSlice";
+
+import { Button, Input } from "../../UI";
 import {
   DASHBOARD,
   TOAST_SOMETHING_WENT_WRONG,
 } from "../../../Utils/constants";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../Redux/Slices/auth/authSlice";
 import isEmail from "validator/lib/isEmail";
 
+import { handleInputChangeType } from "../../../Types/common";
 const Sighup = () => {
   const [register, { isLoading, isError, status, isSuccess }] =
     useRegisterMutation();
@@ -43,15 +46,12 @@ const Sighup = () => {
         password,
       }).unwrap();
 
-      console.log(response);
-
       if (response.success) {
         toast("New user successfully created");
         dispatch(setUser(response.user));
         navigate(`/${DASHBOARD}`);
       } else {
-        toast("New user successfully created");
-        dispatch(setUser(response.user));
+        toast.error(response?.message || TOAST_SOMETHING_WENT_WRONG);
       }
     } catch (error: any) {
       toast.error(error?.data?.message || TOAST_SOMETHING_WENT_WRONG);
@@ -60,7 +60,12 @@ const Sighup = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen">
-      <div className="flex flex-col justify-center items-center w-96 rounded border pt-10 px-2">
+      <div className="relative flex flex-col justify-center items-center w-96 rounded border pt-10 px-2">
+        {isLoading && (
+          <div className="absolute flex justify-center items-center grow w-full h-full bg-app-blue-50 bg-opacity-50 top-0 z-10">
+            <SyncLoader color="#1570ef" />
+          </div>
+        )}
         <h2 className="text-app-blue-300 font-bold text-4xl mb-2">Register</h2>
         <h4 className="text-app-grey-300 text-sm mb-12 text-center">
           Create New Account
@@ -86,7 +91,9 @@ const Sighup = () => {
             onChange={handlePasswordChange}
           />
           <div className="flex justify-center pt-8">
-            <Button className="!w-28">SIGHUP</Button>
+            <Button className="!w-28" disabled={isLoading}>
+              SIGHUP
+            </Button>
           </div>
         </form>
         <div className="py-10">
