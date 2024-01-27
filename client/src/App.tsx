@@ -20,6 +20,7 @@ import {
   SIGHUP,
 } from "./Utils/constants";
 import { ProtectedRoutes } from "./Components";
+import GuestModal from "./Components/GuestModal/GuestModal";
 
 function App() {
   return (
@@ -30,10 +31,10 @@ function App() {
           <Route path={`/${LOGIN}`} element={<Login />} />
           <Route path={`/${SIGHUP}`} element={<Sighup />} />
           {/* route for testing */}
-          <Route
+          {/* <Route
             path={`/test`}
-            element={<div className="h-screen">{/* <UserDropdown /> */}</div>}
-          />
+            element={<div className="h-screen">{<GuestModal />}</div>}
+          /> */}
           {/* route for testing */}
 
           <Route element={<ProtectedRoutes />}>
@@ -49,6 +50,7 @@ function App() {
           <Route path="*" element={<NoRouteMatch />} />
         </Routes>
       </BrowserRouter>
+      <GuestModal />
     </div>
   );
 }

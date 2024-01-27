@@ -10,7 +10,7 @@ export const createGuest = async (req, res) => {
 
   res
     .status(StatusCodes.OK)
-    .json({ success: true, message: "hello", guest: newGuest });
+    .json({ success: true, message: ReasonPhrases.OK, guest: newGuest });
 };
 
 export const getAllGuests = async (req, res) => {
@@ -20,7 +20,7 @@ export const getAllGuests = async (req, res) => {
 
   res
     .status(StatusCodes.OK)
-    .json({ success: true, message: "hello", data: allGuests });
+    .json({ success: true, message: ReasonPhrases.OK, data: allGuests });
 };
 
 export const getGuest = async (req, res) => {
@@ -35,7 +35,7 @@ export const getGuest = async (req, res) => {
 
   res
     .status(StatusCodes.OK)
-    .json({ success: true, message: "hello", data: guest });
+    .json({ success: true, message: ReasonPhrases.OK, data: guest });
 };
 
 export const deleteGuest = async (req, res) => {

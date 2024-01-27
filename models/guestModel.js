@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import validator from "validator";
 
 const guestSchema = new mongoose.Schema(
   {
@@ -17,13 +16,6 @@ const guestSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      // unique: true,
-      // lowercase: true,
-      // trim: true,
-      // validate: {
-      //   validator: (v) => validator.isEmail(v),
-      //   message: "please enter a valid email address",
-      // },
     },
     passportNumber: {
       type: String,
