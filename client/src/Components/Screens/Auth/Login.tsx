@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { Button, Input } from "../../UI";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { handleInputChangeType } from "../../../Types/common";
+import isEmail from "validator/lib/isEmail";
+import SyncLoader from "react-spinners/SyncLoader";
+
 import { useLoginMutation } from "../../../Redux/Slices/auth/authApi";
+import { setUser } from "../../../Redux/Slices/auth/authSlice";
+
+import { Button, Input } from "../../UI";
+
 import {
   DASHBOARD,
   TOAST_SOMETHING_WENT_WRONG,
 } from "../../../Utils/constants";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../Redux/Slices/auth/authSlice";
-import isEmail from "validator/lib/isEmail";
+
+import { handleInputChangeType } from "../../../Types/common";
 
 const Login = () => {
   const [login, { isLoading, isError }] = useLoginMutation();
@@ -82,7 +87,12 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen ">
-      <div className="flex flex-col justify-center items-center w-96 rounded border pt-10 px-2">
+      <div className="relative flex flex-col justify-center items-center w-96 rounded border pt-10 px-2">
+        {isLoading && (
+          <div className="absolute flex justify-center items-center grow w-full h-full bg-app-blue-50 bg-opacity-50 top-0 z-10">
+            <SyncLoader color="#1570ef" />
+          </div>
+        )}
         <h2 className="text-app-blue-300 font-bold text-4xl mb-2">Welcome</h2>
         <h4 className="text-app-grey-300 text-sm mb-12 text-center">
           Access the App panel using your name, email and password.
@@ -111,7 +121,9 @@ const Login = () => {
             isInvalidValue={isPasswordInvalid}
           />
           <div className="flex justify-center pt-8">
-            <Button className="!w-28">LOGIN</Button>
+            <Button className="!w-28" disabled={isLoading}>
+              LOGIN
+            </Button>
           </div>
         </form>
         <div className="py-10">
