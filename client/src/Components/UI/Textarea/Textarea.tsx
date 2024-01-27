@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { handleInputChangeType, handleTextareaChangeType } from "../../../Types/common";
 
 type TextareaPropsTypes = {
   label?: string;
@@ -8,7 +9,7 @@ type TextareaPropsTypes = {
   className?: string;
   disabled?: boolean;
   isResize?: boolean;
-  onChange?: () => void;
+  onChange?: handleTextareaChangeType;
 };
 
 const Textarea: React.FC<TextareaPropsTypes> = ({

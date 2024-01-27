@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { handleInputChangeType } from "../../../Types/common";
 
 type InputPropsTypes = {
-  type?: "input" | "password" | "email";
+  type?: "text" | "password" | "email" | "tel";
   label?: string;
   value?: string;
   placeholder?: string;
@@ -15,7 +15,7 @@ type InputPropsTypes = {
 };
 
 const Input: React.FC<InputPropsTypes> = ({
-  type = "input",
+  type = "text",
   label,
   value,
   onChange,
