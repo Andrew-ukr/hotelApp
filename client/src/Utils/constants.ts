@@ -20,3 +20,6 @@ export const USER_PROFILE = "user-profile";
 
 // toast messages
 export const TOAST_SOMETHING_WENT_WRONG = "Oops! Something went wrong.";
+
+// common text
+export const TEXT_NO_DATA = "No data";

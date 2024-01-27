@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-table";
 import { useNavigate } from "react-router-dom";
 import { Guest } from "../../../Types/guests";
+import { TEXT_NO_DATA } from "../../../Utils/constants";
 
 type TableTypes = {
   isLoading: boolean;
@@ -58,7 +59,7 @@ const GuestsTable = ({ isLoading, isError, data }: TableTypes) => {
   });
 
   const noData = (
-    <div className="flex justify-center py-6 text-app-grey-500">no data</div>
+    <div className="flex justify-center py-6 text-app-grey-500">{TEXT_NO_DATA}</div>
   );
   return (
     <div className="flex flex-col grow overflow-auto">
@@ -67,7 +68,7 @@ const GuestsTable = ({ isLoading, isError, data }: TableTypes) => {
           <SyncLoader color="#1570ef" />
         </div>
       )}
-      {!isLoading && !isError && data.length && (
+      {!isLoading && !isError && !!data.length && (
         <table className="border border-app-grey-50 rounded max-w-full">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
