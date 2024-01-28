@@ -105,6 +105,7 @@ const Login = () => {
             onChange={handleUserNameChange}
             value={name}
             isInvalidValue={isNameInvalid}
+            dataCy='userName'
           />
           <Input
             label="Email"
@@ -112,6 +113,7 @@ const Login = () => {
             onChange={handleEmailChange}
             value={email}
             isInvalidValue={isEmailInvalid}
+            dataCy='userEmail'
           />
           <Input
             type="password"
@@ -119,9 +121,10 @@ const Login = () => {
             onChange={handlePasswordChange}
             value={password}
             isInvalidValue={isPasswordInvalid}
+            dataCy="userPassword"
           />
           <div className="flex justify-center pt-8">
-            <Button className="!w-28" disabled={isLoading}>
+            <Button className="!w-28" disabled={isLoading} dataCy='saveButtonLoginPage' >
               LOGIN
             </Button>
           </div>
