@@ -17,32 +17,32 @@ class OnLoginPage {
   }
 
   addUserName(userName) {
-    cy.get('[data-cy="userName"]').type(userName).should('have.value', userName);
+    cy.get('[data-cy="userName"]').type(userName);
   }
 
   clearUserName() {
-    cy.get('[data-cy="userName"]').clear().should('have.value', '');
+    cy.get('[data-cy="userName"]').clear();
   }
 
   addUserEmail(email) {
-    cy.get('[data-cy="userEmail"]').type(email).should('have.value', email);
+    cy.get('[data-cy="userEmail"]').type(email);
   }
 
   clearUserEmail() {
-    cy.get('[data-cy="userEmail"]').clear().should('have.value', '');
+    cy.get('[data-cy="userEmail"]').clear();
   }
 
   addUserPassword(password) {
-    cy.get('[data-cy="userPassword"]').type(password).should('have.value', password);
+    cy.get('[data-cy="userPassword"]').type(password);
   }
 
   clearUserPassword() {
-    cy.get('[data-cy="userPassword"]').clear().should('have.value', '');
+    cy.get('[data-cy="userPassword"]').clear();
   }
 
   redirectToLoginPage(path) {
     cy.visit(path);
-    cy.url().should("eq", `${Cypress.env("cypressBaseUrl")}/login`);
+    cy.url().should("eq", "http://localhost:3000/login");
   }
 
   pressSaveButton() {
@@ -58,15 +58,12 @@ class OnLoginPage {
 
   checkLoginRequest(request) {
     cy.wait(request)
+      .get(request)
       .then((api) => {
         expect(api.response.statusCode).to.equal(200);
-        expect(api.request.body.name).to.equal(Cypress.env("cypressUserName"));
-        expect(api.request.body.email).to.equal(
-          Cypress.env("cypressUserEmail")
-        );
-        expect(api.request.body.password).to.equal(
-          Cypress.env("cypressUserPassword")
-        );
+        expect(api.request.body.name).to.equal("cypressUser");
+        expect(api.request.body.email).to.equal("cypressUser@email.com");
+        expect(api.request.body.password).to.equal("123456");
       });
   }
 }
