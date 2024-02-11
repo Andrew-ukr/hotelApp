@@ -19,7 +19,14 @@ export const guestsApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Guests"],
     }),
+    deleteGuest: builder.mutation<GuestResponse, Partial<string>>({
+      query: (id) => ({
+        url: `guest/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Guests"],
+    }),
   }),
 });
 
-export const { useGetAllGuestsQuery, useCreateGuestMutation } = guestsApi;
+export const { useGetAllGuestsQuery, useCreateGuestMutation, useDeleteGuestMutation } = guestsApi;

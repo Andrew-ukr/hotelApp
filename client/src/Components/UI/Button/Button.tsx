@@ -10,7 +10,7 @@ type ButtonPropsType = {
   dataCy?: string;
   type?: ButtonType;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const Button: React.FC<ButtonPropsType> = ({
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonPropsType> = ({
   onClick,
   className,
   type,
-  dataCy = '',
+  dataCy = "",
 }) => {
   return (
     <button
